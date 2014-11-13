@@ -8,10 +8,10 @@
   <dt>Character name</dt>
   <dd><%= @role.character_name %></dd>
 
-  <dt>Movie ID</dt>
-  <dd><%= @role.movie_id %></dd>
+  <dt>Movie</dt>
+  <dd><%= Movie.find_by({ :id => @role.movie_id }).title %></dd>
 
-  <dt>Actor ID</dt>
-  <dd><%= @role.actor_id %></dd>
+  <dt>Actor</dt>
+  <dd><%= Actor.find_by({ :id => @role.actor_id }).name %></dd>
 
 </dl>

@@ -12,7 +12,7 @@
       <th>Year</th>
       <th>Duration</th>
       <th>Description</th>
-      <th>Director ID</th>
+      <th>Director</th>
       <th></th>
       <th></th>
       <th></th>
@@ -27,7 +27,7 @@
         <td><%= movie.year %></td>
         <td><%= movie.duration %></td>
         <td><%= movie.description %></td>
-        <td><%= movie.director_id %></td>
+        <td><%= Director.find_by({ :id => movie.director_id }).name %></td>
         <td>
           <a href="/movies/<%= movie.id %>" class="btn btn-primary">
             <i class="fa fa-search-plus"></i>

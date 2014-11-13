@@ -17,11 +17,18 @@
   <dt>Description</dt>
   <dd><%= @movie.description %></dd>
 
-  <dt>Director ID</dt>
-  <dd><%= @movie.director_id %></dd>
+  <dt>Director</dt>
+  <dd><%= Director.find_by({ :id => @movie.director_id }).name %></dd>
 
   <dt>Image</dt>
   <dd><img src="<%= @movie.image_url %>" width="320"></dd>
 
-
+  <dt>Cast</dt>
+  <dd>
+    <ul>
+      <% Role.where({ :movie_id => @movie.id }).each do |role| %>
+        <li><%= role.character_name %> (<%= Actor.find_by({ :id => role.actor_id }).name %>)</li>
+      <% end %>
+    </ul>
+  </dd>
 </dl>
