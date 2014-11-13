@@ -17,4 +17,13 @@
   <dt>Image</dt>
   <dd><img src="<%= @director.image_url %>" width="320"></dd>
 
+  <dt>Filmography</dt>
+  <dd>
+    <ul>
+      <% Movie.where({ :director_id => @director.id }).each do |movie| %>
+        <li><%= movie.title %> (<%= movie.year %>)</li>
+      <% end %>
+    </ul>
+  </dd>
+
 </dl>
