@@ -1,49 +1,74 @@
-# Resource Practice
+# Query Practice
 
-This application has 4 database-backed web CRUD resources: directors, movies, roles, and actors.
+## Introduction
 
-As usual, each resource has 7 "golden" actions that allow users to interact with it:
+This application is a reference for movie buffs. We maintain a list of the top ~100 movies of all time, along with the directors and actors associated with each movie.
 
-### CREATE
- - new_form
- - create_row
+Our domain model is as follows:
 
-### READ
- - index
- - show
+    Movie:
+      title: string
+      year: string
+      duration: integer
+      description: text
+      image_url: string
+      director_id: integer
 
-### UPDATE
- - edit_form
- - update_row
+    Director:
+      dob: string
+      name: string
+      bio: text
+      image_url: string
 
-### DELETE
- - destroy
+    Actor:
+      dob: string
+      name: string
+      bio: text
+      image_url: string
 
-There are bugs in most of the 28 actions required to CRUD our 4 resources. Your job is to debug them all until you can create, read, update, and delete each of directors, movies, roles, and actors without running into any issues.
+    Role:
+      character_name: string
+      movie_id: integer
+      actor_id: integer
 
-Here is a fully functional version of the app, for your reference.
+Currently, we have standard CRUD resources that work, but the interface of this app is not very helpful.
 
-https://resource-practice.herokuapp.com/
-
-Make yours work like it. Your local app is using a dark Bootswatch, and the reference app is using a light Bootswatch; don't get confused between the tabs as you try to check your work.
+Let's display information in a more helpful way for our users -- for example, rather than only displaying all of the actors together in one list at http://localhost:3000/actors, lets display a cast on the show page of each movie.
 
 ## Setup
 
  1. Clone this repository.
- 1. `cd` to its location.
+ 1. `cd` into the application's root folder.
  1. `bundle install`
- 1. `rake db:migrate` (To create the four tables on your machine; I have already written the instructions to do so.)
- 1. `rake db:seed` (to pre-populate your tables with some data, so we can get straight to work. This step may take a while on Windows machines. You can open a new Command Line window to continue working while it runs.)
- 1. `rails server`
+ 1. `rake db:migrate`
+ 1. `rake db:seed`
+ 1. `rails s`
 
-Navigate to
+Navigate to http://localhost:3000 and click around to familiarize yourself with the application. I've provided some seed data for you so that you can get straight to work.
 
-http://localhost:3000
+## Part 1
 
-You should see a list of movies. The `Movies#index` action is functional, and I have set it to be the root URL.
+First of all, our users should never have to see ID numbers. Right now, the following views display raw IDs:
 
-From here, click through the app and debug. Try adding a new movie, updating a movie, looking at the details of a movie, and deleting a movie.
+ - movies#show (displays director_id)
+ - movies#index (displays director_id)
+ - roles#show (displays movie_id and actor_id)
+ - roles#index (displays movie_id and actor_id)
 
-Sometimes you will get an error message; sometimes there won't be an error message, but the action just won't do its job. Use the server log to help figure out what's going on.
+Go through and improve each of these views to display names or titles rather than IDs. In other words, take an ID number and use it to look up the row in the corresponding table, and then peel off something more helpful like a name or title.
 
-After Movies, work on Directors, then Actors, then Roles.
+## Part 2
+
+Let's now make the app more useful by displaying collections of objects that belong to single objects:
+
+ - On the directors#show page, display a filmography (list of movies that belong to that director)
+ - On the movies#show page, display a cast (list of characters (and actor for each) that belong to that movie)
+ - On the actors#show page, display a filmography (list of characters (and movie for each) that the actor has played)
+
+## Part 3
+
+Wherever possible, convert actor/director names or movie titles in to links that take you to the show page for that resource.
+
+## Part 4
+
+There is a new link on the navbar: Questions. Check it out. Follow the RCAV for each question and answer it in the action. Practice querying your tables to answer useful questions. Be sure to answer Questions 1-6, but only work on questions 7-9 if you finish all your other work and are bored.

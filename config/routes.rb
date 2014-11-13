@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get("/q1",            { :controller => "questions", :action => "question_1" })
+  get("/q2",            { :controller => "questions", :action => "question_2" })
+  get("/q3",            { :controller => "questions", :action => "question_3" })
+  get("/q4",            { :controller => "questions", :action => "question_4" })
+  get("/q5",            { :controller => "questions", :action => "question_5" })
+  get("/q6",            { :controller => "questions", :action => "question_6" })
+  get("/q7",            { :controller => "questions", :action => "question_7" })
+  get("/q8",            { :controller => "questions", :action => "question_8" })
+  get("/q9",            { :controller => "questions", :action => "question_9" })
+
   # Route for bare domain:
   get('/', { :controller => 'movies', :action => 'index' })
 
