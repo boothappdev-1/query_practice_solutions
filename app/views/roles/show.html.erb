@@ -9,9 +9,9 @@
   <dd><%= @role.character_name %></dd>
 
   <dt>Movie</dt>
-  <dd><%= Movie.find_by({ :id => @role.movie_id }).title %></dd>
+  <dd><a href="/movies/<%= @role.movie_id %>"><%= Movie.find_by({ :id => @role.movie_id }).title %></a></dd>
 
   <dt>Actor</dt>
-  <dd><%= Actor.find_by({ :id => @role.actor_id }).name %></dd>
+  <dd><a href="/actors/<%= @role.actor_id %>"><%= Actor.find_by({ :id => @role.actor_id }).name %></a></dd>
 
 </dl>
